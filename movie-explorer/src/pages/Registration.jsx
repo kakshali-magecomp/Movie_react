@@ -53,11 +53,15 @@ export default function Registration()
         }
 
         setError({});//resate Error
-        // console.log(name);
-        // console.log(email);
-        // console.log(password);
         const userData = {name, email, password, phone, age };
-        localStorage.setItem("registeredUser", JSON.stringify(userData));
+        const existingUsers = JSON.parse(localStorage.getItem("registeredUsers")) || [];
+        const isDuplicate = existingUsers.some((user) => user.email === email);
+        if (isDuplicate) {
+            alert("This email is already registered!");
+            return;
+        }
+        const updatedUsers = [...existingUsers, userData];
+        localStorage.setItem("registeredUsers", JSON.stringify(updatedUsers));
         alert("Register SuccessFully");
         navigate("/login")
     }

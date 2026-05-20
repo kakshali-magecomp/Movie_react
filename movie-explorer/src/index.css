@@ -6,3 +6,18 @@ body{
   font-family:sans-serif;
   background:#111827;
 }
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); } /* Scrolls exactly halfway (one full set of images) */
+}
+
+.animate-scroll {
+  display: flex;
+  width: max-content;
+  animation: marquee 25s linear infinite; /* Smooth, continuous loop */
+}
+
+/* Optional: Pauses the moving marquee when a user hovers over a movie card */
+.animate-scroll:hover {
+  animation-play-state: paused;
+}
